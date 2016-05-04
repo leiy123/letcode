@@ -1,0 +1,12 @@
+import java.util.*;
+
+public class Solution {
+    public boolean containsDuplicate(int[] nums) {
+       TreeSet set = new TreeSet();
+       for(int i : nums){
+           if(set.add(i) != true)
+                return true;
+       }
+       return false;
+    }
+}
