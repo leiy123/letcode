@@ -1,0 +1,13 @@
+    public String reverseString(String s) { //literal type : String
+        int len = s.length();
+        char ch[] = s.toCharArray();
+        for(int i = 0; i < len/2; i++){
+            char tp;
+            tp = ch[i];
+            ch[i] = ch[len-1-i];
+            ch[len-1-i] = tp;
+        }
+        //System.out.println(""+ s.charAt(0)+" "+ ch[0]);
+        String rt = new String(ch);
+        return rt;
+    }
