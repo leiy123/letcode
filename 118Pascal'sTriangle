@@ -1,0 +1,52 @@
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> res = new LinkedList<List<Integer>>();
+        
+        if(numRows <= 0) return res;
+        
+        res.add(geCurRow(1,  null));
+        if(numRows == 1){
+            return res;
+        } 
+        res.add(geCurRow(2, null));
+        if(numRows > 2){
+            for(int i = 3; i <= numRows;  i++){
+                res.add(i-1, geCurRow(i, (List<Integer>)res.get(i-2)));
+            }
+        }
+        return res;
+    }
+
+    
+    public List<Integer> geCurRow(int curRow, List<Integer> preRow){
+        List li = new LinkedList();
+        switch(curRow){
+            case 1: li.add(1); break;
+            case 2: {
+                li.add(1);
+                li.add(1);
+                break;
+            }
+            case 3:{
+                li.add(1);
+                li.add(2);
+                li.add(1);
+                break;
+            }
+            default:{  
+                li.add(0, 1);
+                li.add(1, curRow-1);
+                li.add(2, curRow-1);
+                li.add(3, 1);
+                int i;
+                for(i = 2; i < curRow/2; i++){
+                    Integer tp = preRow.get(i) + preRow.get(i-1);
+                    li.add(i, tp);
+                    li.add(i+1, tp);
+                }
+                if(curRow % 2 != 0) li.add(i, preRow.get(i)*2); 
+            }
+        }
+      return li;
+    }
+}
